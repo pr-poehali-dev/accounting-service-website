@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -16,14 +17,24 @@ const Index = () => {
     phone: '',
     message: ''
   });
+  const [agreedToPrivacy, setAgreedToPrivacy] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!agreedToPrivacy) {
+      toast({
+        title: "Ошибка",
+        description: "Необходимо согласие на обработку персональных данных",
+        variant: "destructive"
+      });
+      return;
+    }
     toast({
       title: "Заявка отправлена!",
       description: "Мы свяжемся с вами в ближайшее время.",
     });
     setFormData({ name: '', email: '', phone: '', message: '' });
+    setAgreedToPrivacy(false);
   };
 
   const services = [
@@ -303,6 +314,17 @@ const Index = () => {
                     rows={4}
                   />
                 </div>
+                <div className="flex items-start gap-2">
+                  <Checkbox 
+                    id="privacy" 
+                    checked={agreedToPrivacy}
+                    onCheckedChange={(checked) => setAgreedToPrivacy(checked as boolean)}
+                  />
+                  <label htmlFor="privacy" className="text-sm text-muted-foreground leading-tight cursor-pointer">
+                    Я согласен на обработку персональных данных и принимаю{' '}
+                    <a href="#" className="text-primary hover:underline">политику конфиденциальности</a>
+                  </label>
+                </div>
                 <Button type="submit" className="w-full" size="lg">
                   Отправить заявку
                 </Button>
@@ -365,7 +387,7 @@ const Index = () => {
 
       <footer className="py-8 border-t">
         <div className="container text-center text-sm text-muted-foreground">
-          <p>© 2024 БухПро. Все права защищены.</p>
+          <p>© 2024 ИП Шурыгина К.И. Все права защищены.</p>
         </div>
       </footer>
     </div>
