@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,6 +20,7 @@ const Index = () => {
     message: ''
   });
   const [agreedToPrivacy, setAgreedToPrivacy] = useState(false);
+  const [privacyDialogOpen, setPrivacyDialogOpen] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -320,9 +323,69 @@ const Index = () => {
                     checked={agreedToPrivacy}
                     onCheckedChange={(checked) => setAgreedToPrivacy(checked as boolean)}
                   />
-                  <label htmlFor="privacy" className="text-sm text-muted-foreground leading-tight cursor-pointer">
+                  <label htmlFor="privacy" className="text-sm text-muted-foreground leading-tight">
                     Я согласен на обработку персональных данных и принимаю{' '}
-                    <a href="#" className="text-primary hover:underline">политику конфиденциальности</a>
+                    <Dialog open={privacyDialogOpen} onOpenChange={setPrivacyDialogOpen}>
+                      <DialogTrigger asChild>
+                        <button type="button" className="text-primary hover:underline">
+                          политику конфиденциальности
+                        </button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-2xl">
+                        <DialogHeader>
+                          <DialogTitle>Согласие на обработку персональных данных</DialogTitle>
+                          <DialogDescription>
+                            БухПро (ИП Шурыгина К.И.)
+                          </DialogDescription>
+                        </DialogHeader>
+                        <ScrollArea className="h-[400px] pr-4">
+                          <div className="space-y-4 text-sm">
+                            <p>
+                              Настоящим, в соответствии с Федеральным законом № 152-ФЗ «О персональных данных» от 27.07.2006 года, 
+                              Вы подтверждаете свое согласие на обработку компанией БухПро (ИП Шурыгина К.И.) Ваших персональных данных:
+                            </p>
+                            <ul className="list-disc pl-6 space-y-1">
+                              <li>сбор,</li>
+                              <li>систематизацию,</li>
+                              <li>накопление,</li>
+                              <li>хранение,</li>
+                              <li>уточнение (обновление, изменение),</li>
+                              <li>использование,</li>
+                              <li>передачу исключительно в целях оказания бухгалтерских и информационно-консультационных услуг,</li>
+                              <li>блокирование,</li>
+                              <li>обезличивание,</li>
+                              <li>уничтожение.</li>
+                            </ul>
+                            <p className="font-semibold">
+                              БухПро гарантирует конфиденциальность получаемой информации.
+                            </p>
+                            <p className="font-semibold mt-4">
+                              Обработка персональных данных осуществляется в следующих целях:
+                            </p>
+                            <ul className="list-disc pl-6 space-y-1">
+                              <li>связь с пользователем сайта для разъяснения интересующей его информации,</li>
+                              <li>консультация пользователя сайта по вопросам бухгалтерского учета и/или налогообложения,</li>
+                              <li>эффективного исполнения заказов, договоров и иных обязательств, принятых компанией БухПро в качестве обязательных к исполнению.</li>
+                            </ul>
+                            <p className="mt-4">
+                              Настоящее согласие распространяется на следующие Ваши персональные данные: имя и контактный телефон.
+                            </p>
+                            <p className="mt-4">
+                              Срок действия согласия является неограниченным. Вы можете в любой момент отозвать настоящее согласие, 
+                              направив письменное уведомление на наш электронный адрес:{' '}
+                              <a href="mailto:ruslansultanov1995@mail.ru" className="text-primary hover:underline">
+                                ruslansultanov1995@mail.ru
+                              </a>{' '}
+                              с пометкой «Отзыв согласия на обработку персональных данных».
+                            </p>
+                            <p className="mt-4">
+                              Настоящее согласие действует в течение всего периода хранения персональных данных, 
+                              если иное не предусмотрено законодательством Российской Федерации.
+                            </p>
+                          </div>
+                        </ScrollArea>
+                      </DialogContent>
+                    </Dialog>
                   </label>
                 </div>
                 <Button type="submit" className="w-full" size="lg">
