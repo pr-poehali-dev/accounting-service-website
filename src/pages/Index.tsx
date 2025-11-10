@@ -109,6 +109,27 @@ const Index = () => {
     }
   ];
 
+  const testimonials = [
+    {
+      name: 'Алексей Морозов',
+      company: 'ООО "ТехСтрой"',
+      text: 'Работаем с БухПро уже 3 года. Полностью избавились от головной боли с отчетностью и налогами. Особенно радует оперативность - на любой вопрос отвечают в течение часа.',
+      rating: 5
+    },
+    {
+      name: 'Ирина Соколова',
+      company: 'ИП Соколова И.В.',
+      text: 'Перешла с другой бухгалтерской компании и разница колоссальная! Здесь все объясняют простым языком, помогают оптимизировать расходы. Цена более чем адекватная.',
+      rating: 5
+    },
+    {
+      name: 'Дмитрий Волков',
+      company: 'ООО "МаркетПро"',
+      text: 'Отличный сервис! Когда у нас была налоговая проверка, ребята из БухПро полностью нас поддержали, подготовили все документы. Проверка прошла без единого замечания.',
+      rating: 5
+    }
+  ];
+
   const faqs = [
     {
       question: 'Какие документы нужны для начала работы?',
@@ -289,7 +310,36 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="faq" className="py-20 bg-card">
+      <section className="py-20 bg-card">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Отзывы клиентов</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Более 150 компаний доверяют нам свою бухгалтерию
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex gap-1 mb-3">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Icon key={i} name="Star" className="h-4 w-4 fill-primary text-primary" />
+                    ))}
+                  </div>
+                  <CardTitle className="text-lg">{testimonial.name}</CardTitle>
+                  <CardDescription>{testimonial.company}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{testimonial.text}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" className="py-20">
         <div className="container max-w-3xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Частые вопросы</h2>
