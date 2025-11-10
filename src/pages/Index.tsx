@@ -343,7 +343,7 @@ const Index = () => {
                 Свяжитесь с нами удобным способом
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-4 gap-6">
               <Card className="text-center">
                 <CardHeader>
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -352,7 +352,7 @@ const Index = () => {
                   <CardTitle className="text-lg">Телефон</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">+7 (495) 123-45-67</p>
+                  <p className="text-muted-foreground">+7 (908) 558-16-60</p>
                   <p className="text-sm text-muted-foreground mt-1">Пн-Пт: 9:00 - 18:00</p>
                 </CardContent>
               </Card>
@@ -376,8 +376,21 @@ const Index = () => {
                   <CardTitle className="text-lg">Адрес</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">г. Москва, ул. Примерная, д. 1</p>
-                  <p className="text-sm text-muted-foreground mt-1">Офис 305</p>
+                  <p className="text-muted-foreground">г. Саратов, ул. Рабочая, д. 27</p>
+                </CardContent>
+              </Card>
+              <Card className="text-center">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name="Send" className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle className="text-lg">Telegram</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <a href="https://t.me/NalogZen" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                    @NalogZen
+                  </a>
+                  <p className="text-sm text-muted-foreground mt-1">Полезные советы о налогах</p>
                 </CardContent>
               </Card>
             </div>
