@@ -1,12 +1,373 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { useToast } from '@/hooks/use-toast';
+import Icon from '@/components/ui/icon';
 
 const Index = () => {
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Заявка отправлена!",
+      description: "Мы свяжемся с вами в ближайшее время.",
+    });
+    setFormData({ name: '', email: '', phone: '', message: '' });
+  };
+
+  const services = [
+    {
+      icon: 'Calculator',
+      title: 'Ведение бухгалтерии',
+      description: 'Полное бухгалтерское сопровождение вашего бизнеса'
+    },
+    {
+      icon: 'FileText',
+      title: 'Налоговая отчетность',
+      description: 'Подготовка и сдача всех видов отчетности в срок'
+    },
+    {
+      icon: 'Briefcase',
+      title: 'Кадровый учет',
+      description: 'Ведение кадрового делопроизводства и расчет зарплаты'
+    },
+    {
+      icon: 'TrendingUp',
+      title: 'Консультации',
+      description: 'Экспертная поддержка по налоговым и финансовым вопросам'
+    },
+    {
+      icon: 'Building2',
+      title: 'Регистрация бизнеса',
+      description: 'Помощь в регистрации ООО и ИП, выбор системы налогообложения'
+    },
+    {
+      icon: 'Shield',
+      title: 'Налоговая оптимизация',
+      description: 'Законные способы снижения налоговой нагрузки'
+    }
+  ];
+
+  const prices = [
+    {
+      title: 'Базовый',
+      price: '15 000',
+      features: [
+        'Ведение бухучета',
+        'Сдача отчетности',
+        'Консультации по email',
+        'До 10 операций в месяц'
+      ]
+    },
+    {
+      title: 'Стандарт',
+      price: '30 000',
+      features: [
+        'Все из Базового',
+        'Кадровый учет',
+        'Расчет зарплаты',
+        'До 50 операций в месяц',
+        'Консультации по телефону'
+      ],
+      popular: true
+    },
+    {
+      title: 'Премиум',
+      price: '50 000',
+      features: [
+        'Все из Стандарта',
+        'Персональный бухгалтер',
+        'Неограниченные операции',
+        'Налоговая оптимизация',
+        'Приоритетная поддержка 24/7'
+      ]
+    }
+  ];
+
+  const faqs = [
+    {
+      question: 'Какие документы нужны для начала работы?',
+      answer: 'Для начала сотрудничества потребуются: свидетельство о регистрации, ИНН, выписка из ЕГРЮЛ/ЕГРИП, банковские реквизиты и информация о системе налогообложения.'
+    },
+    {
+      question: 'Как быстро вы сдаете отчетность?',
+      answer: 'Мы готовим и сдаем отчетность заблаговременно, минимум за 3 дня до крайнего срока. Вы всегда будете в курсе статуса подготовки документов.'
+    },
+    {
+      question: 'Что входит в стоимость услуг?',
+      answer: 'В стоимость входит полное бухгалтерское обслуживание согласно выбранному тарифу: ведение учета, подготовка отчетности, консультации и другие услуги в рамках пакета.'
+    },
+    {
+      question: 'Можно ли изменить тариф?',
+      answer: 'Да, вы можете изменить тариф в любой момент. При увеличении объема операций мы предложим оптимальный план обслуживания.'
+    },
+    {
+      question: 'Как проходит онлайн-консультация?',
+      answer: 'Консультации проводятся в удобном для вас формате: видеозвонок, телефон или переписка. Все документы можно отправить электронно.'
+    }
+  ];
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-16 items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Icon name="Calculator" className="h-6 w-6 text-primary" />
+            <span className="text-xl font-bold">БухПро</span>
+          </div>
+          <nav className="hidden md:flex gap-6">
+            <a href="#services" className="text-sm font-medium hover:text-primary transition-colors">Услуги</a>
+            <a href="#prices" className="text-sm font-medium hover:text-primary transition-colors">Цены</a>
+            <a href="#faq" className="text-sm font-medium hover:text-primary transition-colors">FAQ</a>
+            <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">Контакты</a>
+          </nav>
+          <Button asChild>
+            <a href="#consultation">Консультация</a>
+          </Button>
+        </div>
+      </header>
+
+      <section className="relative py-20 md:py-32 overflow-hidden">
+        <div className="container relative z-10">
+          <div className="max-w-3xl mx-auto text-center animate-fade-in">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              Профессиональные бухгалтерские услуги для вашего бизнеса
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground mb-8">
+              Надежный партнер в финансовом учете. Более 10 лет опыта, индивидуальный подход и гарантия качества
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" asChild>
+                <a href="#consultation">Получить консультацию</a>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <a href="#services">Наши услуги</a>
+              </Button>
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-primary/5 to-transparent" />
+      </section>
+
+      <section id="services" className="py-20 bg-card">
+        <div className="container">
+          <div className="text-center mb-12 animate-fade-in">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Наши услуги</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Комплексное решение всех задач бухгалтерского и налогового учета
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, index) => (
+              <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                    <Icon name={service.icon} className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle>{service.title}</CardTitle>
+                  <CardDescription>{service.description}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="prices" className="py-20">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Тарифы</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Выберите оптимальный план обслуживания для вашего бизнеса
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {prices.map((plan, index) => (
+              <Card 
+                key={index} 
+                className={`relative ${plan.popular ? 'border-primary shadow-lg scale-105' : ''}`}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-sm font-medium">
+                    Популярный
+                  </div>
+                )}
+                <CardHeader className="text-center">
+                  <CardTitle className="text-2xl">{plan.title}</CardTitle>
+                  <div className="mt-4">
+                    <span className="text-4xl font-bold">{plan.price}</span>
+                    <span className="text-muted-foreground"> ₽/мес</span>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    {plan.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <Icon name="Check" className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                        <span className="text-sm">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button className="w-full mt-6" variant={plan.popular ? 'default' : 'outline'} asChild>
+                    <a href="#consultation">Выбрать тариф</a>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" className="py-20 bg-card">
+        <div className="container max-w-3xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Частые вопросы</h2>
+            <p className="text-muted-foreground">
+              Ответы на популярные вопросы о наших услугах
+            </p>
+          </div>
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger className="text-left">{faq.question}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      <section id="consultation" className="py-20">
+        <div className="container max-w-2xl">
+          <Card>
+            <CardHeader className="text-center">
+              <CardTitle className="text-3xl">Запись на консультацию</CardTitle>
+              <CardDescription>
+                Оставьте заявку и получите бесплатную консультацию нашего специалиста
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <Label htmlFor="name">Имя</Label>
+                  <Input
+                    id="name"
+                    placeholder="Ваше имя"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="your@email.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="phone">Телефон</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="+7 (___) ___-__-__"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="message">Сообщение</Label>
+                  <Textarea
+                    id="message"
+                    placeholder="Расскажите о вашем бизнесе и интересующих вопросах"
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    rows={4}
+                  />
+                </div>
+                <Button type="submit" className="w-full" size="lg">
+                  Отправить заявку
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <section id="contact" className="py-20 bg-card">
+        <div className="container">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Контакты</h2>
+              <p className="text-muted-foreground">
+                Свяжитесь с нами удобным способом
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card className="text-center">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name="Phone" className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle className="text-lg">Телефон</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">+7 (495) 123-45-67</p>
+                  <p className="text-sm text-muted-foreground mt-1">Пн-Пт: 9:00 - 18:00</p>
+                </CardContent>
+              </Card>
+              <Card className="text-center">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name="Mail" className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle className="text-lg">Email</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">info@buhpro.ru</p>
+                  <p className="text-sm text-muted-foreground mt-1">Ответим в течение часа</p>
+                </CardContent>
+              </Card>
+              <Card className="text-center">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Icon name="MapPin" className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle className="text-lg">Адрес</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">г. Москва, ул. Примерная, д. 1</p>
+                  <p className="text-sm text-muted-foreground mt-1">Офис 305</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="py-8 border-t">
+        <div className="container text-center text-sm text-muted-foreground">
+          <p>© 2024 БухПро. Все права защищены.</p>
+        </div>
+      </footer>
     </div>
   );
 };
