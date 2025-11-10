@@ -286,14 +286,13 @@ const Index = () => {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">Email <span className="text-muted-foreground text-xs">(необязательно)</span></Label>
                   <Input
                     id="email"
                     type="email"
                     placeholder="your@email.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
                   />
                 </div>
                 <div>
@@ -427,7 +426,9 @@ const Index = () => {
                   <CardTitle className="text-lg">Email</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">info@buhpro.ru</p>
+                  <a href="mailto:ruslansultanov1995@mail.ru" className="text-primary hover:underline">
+                    ruslansultanov1995@mail.ru
+                  </a>
                   <p className="text-sm text-muted-foreground mt-1">Ответим в течение часа</p>
                 </CardContent>
               </Card>
