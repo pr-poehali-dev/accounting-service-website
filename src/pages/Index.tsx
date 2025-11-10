@@ -174,6 +174,52 @@ const Index = () => {
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-primary/5 to-transparent" />
       </section>
 
+      <section className="py-16 border-y bg-gradient-to-b from-primary/5 to-transparent">
+        <div className="container">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Почему выбирают БухПро?</h2>
+              <p className="text-lg text-muted-foreground">Работайте с надежным партнером и получайте реальные преимущества</p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              <Card className="border-2 hover:border-primary transition-colors">
+                <CardHeader>
+                  <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                    <Icon name="TrendingDown" className="h-7 w-7 text-primary" />
+                  </div>
+                  <CardTitle className="text-xl">Экономия до 40%</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">Стоимость наших услуг ниже, чем содержание штатного бухгалтера. Никаких скрытых платежей.</p>
+                </CardContent>
+              </Card>
+              <Card className="border-2 hover:border-primary transition-colors">
+                <CardHeader>
+                  <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                    <Icon name="Clock" className="h-7 w-7 text-primary" />
+                  </div>
+                  <CardTitle className="text-xl">Первый результат за 24 часа</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">Быстрый старт работы. Проведем аудит и подготовим план действий уже на следующий день.</p>
+                </CardContent>
+              </Card>
+              <Card className="border-2 hover:border-primary transition-colors">
+                <CardHeader>
+                  <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                    <Icon name="ShieldCheck" className="h-7 w-7 text-primary" />
+                  </div>
+                  <CardTitle className="text-xl">Юридическая гарантия</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">Договор с полной ответственностью. Компенсируем финансовые потери при ошибках с нашей стороны.</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="services" className="py-20 bg-card">
         <div className="container">
           <div className="text-center mb-12 animate-fade-in">
