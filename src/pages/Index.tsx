@@ -501,7 +501,7 @@ const Index = () => {
                 Свяжитесь с нами удобным способом
               </p>
             </div>
-            <div className="grid md:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               <Card className="text-center">
                 <CardHeader>
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -512,20 +512,6 @@ const Index = () => {
                 <CardContent>
                   <p className="text-muted-foreground">+7 (908) 558-16-60</p>
                   <p className="text-sm text-muted-foreground mt-1">Пн-Пт: 9:00 - 18:00</p>
-                </CardContent>
-              </Card>
-              <Card className="text-center">
-                <CardHeader>
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon name="Mail" className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-lg">Email</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <a href="mailto:ruslansultanov1995@mail.ru" className="text-primary hover:underline">
-                    ruslansultanov1995@mail.ru
-                  </a>
-                  <p className="text-sm text-muted-foreground mt-1">Ответим в течение часа</p>
                 </CardContent>
               </Card>
               <Card className="text-center">
